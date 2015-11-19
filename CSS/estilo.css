@@ -1,0 +1,34 @@
+.container {
+    width: 650px;
+}
+.container h1 {
+    margin: 40px 0px;
+}
+
+.panel-footer {
+    padding: 20px 70px 40px 70px;
+}
+.panel-footer h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.panel-footer .form-control {
+    margin-bottom: 5px;
+}
+.panel-footer button {
+    margin-top: 10px;
+}
+
+.selecionado {
+    background-color: #FFFFCC !important;
+}
+
+.msg-error {
+    color: #D20000;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.input-busca {
+    margin-bottom: 15px;
+}
