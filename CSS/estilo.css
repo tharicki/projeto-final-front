@@ -4,7 +4,9 @@
 .container h1 {
     margin: 40px 0px;
 }
-
+.navbar-nav {
+    background-color: #dbdbdb;
+}
 .panel-footer {
     padding: 20px 70px 40px 70px;
 }
@@ -18,17 +20,14 @@
 .panel-footer button {
     margin-top: 10px;
 }
-
 .selecionado {
     background-color: #FFFFCC !important;
 }
-
 .msg-error {
     color: #D20000;
     margin-bottom: 10px;
     padding-left: 10px;
 }
-
 .input-busca {
     margin-bottom: 15px;
 }
