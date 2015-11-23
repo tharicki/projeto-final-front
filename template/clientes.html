@@ -1,17 +1,20 @@
 <h1>Controle de Clientes</h1>
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">Clientes cadastrados</div>
     <div class="panel-body">
         <p ng-if="clientes.length == 0" class="text-danger">Não há clientes cadastrados! :)</p>
-        <input type="text" class="form-control input-busca" ng-model="criterioBusca" placeholder="O que você está buscando?" />
+        
+        <input type="text" class="form-control input-busca" ng-model="criterioBusca" placeholder="Nome do cliente" />
+        
         <table ng-if="clientes.length > 0" class="table table-striped table-condensed">
+            
             <thead>
                 <tr>
                     <th></th>
-                    <th><a href="" ng-click="ordenarPor('nome')">Nome do Cliente</a></th>
-                    <th width="100px"><a href="" ng-click="ordenarPor('grupo')">Grupo</a></th>
-                    <th width="50px" class="text-center">Qtdade.</th>
-                    <th width="100px" class="text-right"><a href="" ng-click="ordenarPor('preco')">Preço</a></th>
+                    <th><a href="" ng-click="ordernarPor('nome')" class="title-col">Nome do Cliente</a></th>
+                    <th><a href="" ng-click="ordernarPor('endereco')" class="title-col">Endereço</a></th>
+                    <th>Telefone</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             
@@ -21,47 +24,58 @@
                         <input type="checkbox" ng-model="cliente.selecionado" />
                     </td>
                     <td>{{ cliente.nome }}</td>
-                    <td>{{ cliente.grupo.nome | uppercase }}</td>
-                    <td class="text-center">{{ cliente.qtdade }}</td>
-                    <td class="text-right">{{ cliente.preco | currency }}</td>
-                    <td>{{ cliente.dtinclusao | date }}</td>
+                    <td>{{ cliente.endereco }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>{{ cliente.email }}</td>
                 </tr>
             </tbody>
+            
         </table>
-        <button class="btn btn-danger pull-right" ng-click="remover(clientes)" 
-                        ng-if="isSelecionado(clientes)">Remover Selecionado(s)</button>
+        
+        <button class="btn btn-danger pull-right" ng-if="isSelecionado(clientes)" ng-click="remover(estados)">Remover Selecionado(s)</button>
+        
     </div>
+    
     <div class="panel-footer">
         <h3>Adicionar Cliente</h3>
         <form name="clienteForm">
-            <input type="text" class="form-control" placeholder="Nome do Cliente" ng-model="cliente.nome" ng-required="true" ng-minlength="3" ng-maxlength="30" name="nome" />
+            
+            <input type="text" class="form-control" placeholder="Nome do Cliente" ng-model="cliente.nome" ng-required="true" ng-minlength="3" ng-maxlength="100" name="nome" />
             <div class="msg-error" ng-show="clienteForm.nome.$dirty && clienteForm.nome.$invalid">
                 <small ng-show="clienteForm.nome.$error.required">* Campo obrigatório</small>
                 <small ng-show="clienteForm.nome.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
                 <small ng-show="clienteForm.nome.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
             </div>
-            <select class="form-control" ng-model="cliente.grupo" ng-options="grupo.nome for grupo in grupos" ng-required="true" name="grupo">
-                <option value="">Selecione um Grupo</option>
-            </select>
-            <div class="msg-error" ng-show="clienteForm.grupo.$dirty && clienteForm.grupo.$invalid">
-                <small ng-show="clienteForm.grupo.$error.required">* Campo obrigatório</small>
+            
+            <input type="text" class="form-control" placeholder="Endereço" ng-model="cliente.endereco" ng-required="false" ng-minlength="3" ng-maxlength="250" name="endereco" />
+            <div class="msg-error" ng-show="clienteForm.endereco.$dirty && clienteForm.endereco.$invalid">
+                <small ng-show="clienteForm.endereco.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                <small ng-show="clienteForm.endereco.$error.maxlength">* O campo deve ter menos de 250 caractesres</small>
             </div>
+            
             <div class="row">
+                
                 <div class="col-md-6">
-                    <input type="number" class="form-control" placeholder="Qtdade." ng-model="cliente.qtdade" ng-required="true" name="qtdade"/>
-                    <div class="msg-error" ng-show="clienteForm.qtdade.$dirty && clienteForm.qtdade.$invalid">
-                        <small ng-show="clienteForm.qtdade.$error.required">* Campo obrigatório</small>
+                    <input type="text" class="form-control" placeholder="Telefone" ng-model="cliente.telefone" ng-required="true" name="telefone"/>
+                    <div class="msg-error" ng-show="clienteForm.telefone.$dirty && clienteForm.telefone.$invalid">
+                        <small ng-show="clienteForm.telefone.$error.required">* Campo obrigatório</small>
                     </div>
                 </div>
+                
                 <div class="col-md-6">
-                    <input type="number" class="form-control" placeholder="Preço" ng-model="cliente.preco" ng-required="true" name="preco"/>
-                    <div class="msg-error" ng-show="clienteForm.preco.$dirty && clienteForm.qtdade.$invalid">
-                        <small ng-show="clienteForm.preco.$error.required">* Campo obrigatório</small>
+                    <input type="text" class="form-control" placeholder="Email" ng-model="cliente.email" ng-required="true" ng-minlength="3" ng-maxlength="250" name="email"/>
+                    <div class="msg-error" ng-show="clienteForm.email.$dirty && clienteForm.email.$invalid">
+                        <small ng-show="clienteForm.email.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                        <small ng-show="clienteForm.email.$error.maxlength">* O campo deve ter menos de 250 caractesres</small>
                     </div>
                 </div>
+                
             </div>
+            
         </form>
-        <button class="btn btn-primary btn-block" ng-click="adicionar(cliente)" ng-disabled="clienteForm.$invalid">Adiconar Cliente</button>
+        
+        <button class="btn btn-primary btn-block" ng-click="salvarCliente(cliente)" ng-disabled="clienteForm.$invalid">Adiconar Cliente</button>
+        
     </div>
 </div>
         

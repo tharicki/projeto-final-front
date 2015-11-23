@@ -5,7 +5,7 @@ var appViaDagem = angular.module('appViaDagem', ['ngRoute'])
     
     $routeProvider
         .when('/clientes', {
-            templateUrl: 'templates/clientes.html',
+            templateUrl: 'template/clientes.html',
             controller: 'ClienteController'
         });
     

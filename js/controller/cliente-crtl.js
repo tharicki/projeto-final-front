@@ -41,7 +41,7 @@
                  var index = $scope.clientes.indexOf(cliente);
                  $scope.clientes.splice(index,1);
             }).catch(function(error){
-                $scope.msgError = error.data || 'Falha ao Excluir cliente no servidor';
+                $scope.msgError = error.data || 'Falha ao excluir cliente no servidor';
             });
         };  
         
