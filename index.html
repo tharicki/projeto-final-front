@@ -2,40 +2,49 @@
 <html lang="pt-br">
     <head>
         <meta charset="utf-8" />
-        <title>Via-dage</title>
+        <title>Via-dagem</title>
 
         <!-- Bootstrap core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-        <!-- Library -->
-        <script src="lib/angularjs/angular.min.js"></script>
-        <script src="lib/angularjs/angular-route.min.js"></script>
-        <script src="lib/angularjs/angular-locale_pt-br.js"></script>
-
-        <!-- JavaScript da aplicação -->
-        <script src="app.js"></script>
-
+        
         <!-- CSS DA APLICAÇÃO -->
         <link href="CSS/estilo.css" rel="stylesheet" />
 
+        <!-- Library -->
+        <script src="lib/angularjs/angular.min.js"></script>
+        <!--<script src="lib/angularjs/angular-route.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+        <script src="lib/angularjs/angular-locale_pt-br.js"></script>
+
+        <!-- JavaScript da aplicação -->
+        <script src="js/app.js"></script>
+        
+        <!-- Controller da aplicação -->
+        <!--<script src="js/controller/cliente-crtl.js"></script>-->
+
+        <!-- Service da aplicação -->
+        <script src="js/services/cliente-service.js"></script>
 
     </head>
 
-    <body ng-app="app.crud">
+    <body ng-app="app.via-dagem">
         <div class="container">
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li class="active" ng-class="{active: activetab == '/grupos'}"><a href="#/grupos">Grupo</a></li>
-            <li ng-class="{active: activetab == '/produtos'}"><a href="#/produtos">Produto</a></li>
+            <li ng-class="{active: activetab == '/clientes'}"><a href="#/clientes">Clientes</a></li>
           </ul>
         </div><!--/.nav-collapse -->
+            
+            
+        <div class="container">
             <div ng-view></div>
+        </div>
+            
         </div>
     
         <!-- JavaScript dos Controller's -->
-        <script src="controller/grupoCtrl.js"></script>
-        <script src="controller/ProdutoCtrl.js"></script>
+        <script src="js/controller/cliente-crtl.js"></script>
 
 
     </body>
