@@ -1,4 +1,4 @@
-<h1>Controle de Clientes</h1>
+<h1 class="text-h1">Controle de Clientes</h1>
 <div class="panel panel-default">
     <div class="panel-heading">Clientes cadastrados</div>
     <div class="panel-body">
@@ -32,12 +32,12 @@
             
         </table>
         
-        <button class="btn btn-danger pull-right" ng-if="isSelecionado(clientes)" ng-click="remover(estados)">Remover Selecionado(s)</button>
+        <button class="btn btn-danger pull-right" ng-if="isSelecionado(clientes)" ng-click="remover(clientes)">Remover Selecionado(s)</button>
         
     </div>
     
     <div class="panel-footer">
-        <h3>Adicionar Cliente</h3>
+        <h3 class="text-h1">Adicionar Cliente</h3>
         <form name="clienteForm">
             
             <input type="text" class="form-control" placeholder="Nome do Cliente" ng-model="cliente.nome" ng-required="true" ng-minlength="3" ng-maxlength="100" name="nome" />
@@ -77,5 +77,6 @@
         <button class="btn btn-primary btn-block" ng-click="salvarCliente(cliente)" ng-disabled="clienteForm.$invalid">Adiconar Cliente</button>
         
     </div>
+    
 </div>
         

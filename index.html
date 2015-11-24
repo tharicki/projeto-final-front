@@ -27,12 +27,17 @@
 
     </head>
 
-    <body ng-app="appViaDagem">
+    <body ng-app="appViaDagem" id="body">    
         <div class="container">
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar navbar-colapse navbar-static-top">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li ng-class="{active: activetab == '/clientes'}"><a href="#/clientes">Clientes</a></li>
+            <li class="active" ng-class="{active: activetab == '/clientes'}"><a href="#/clientes">Clientes</a></li>
+            <li class="active" ng-class="{active: activetab == '/fornecedores'}"><a href="#/fornecedores">Fornecedores</a></li>
+            <li class="active" ng-class="{active: activetab == '/produtos'}"><a href="#/produtos">Produtos</a></li>
+            <li class="active" ng-class="{active: activetab == '/tarefas'}"><a href="#/tarefas">Tarefas</a></li>
+            <li class="active" ng-class="{active: activetab == '/agendas'}"><a href="#/agendas">Agenda</a></li>
+            <li class="active" ng-class="{active: activetab == '/saidas'}"><a href="#/saidas">Saídas</a></li>
           </ul>
         </div><!--/.nav-collapse -->
             
@@ -40,6 +45,10 @@
         <div class="container">
             <div ng-view></div>
         </div>
+            
+        <!--<img src="template/Peter_Griffin.jpg" alt="Liba">-->
+            <div class="liba"><img src="template/Peter_Griffin2.jpg" alt="Liba2"></div>
+        
             
         </div>
     

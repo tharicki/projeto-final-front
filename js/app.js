@@ -7,6 +7,10 @@ var appViaDagem = angular.module('appViaDagem', ['ngRoute'])
         .when('/clientes', {
             templateUrl: 'template/clientes.html',
             controller: 'ClienteController'
+        })
+        .when('/fornecedores', {
+            templateUrl: 'template/fornecedores.html',
+            controller: 'FornecedorController'
         });
     
     
