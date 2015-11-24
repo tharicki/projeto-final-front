@@ -1,0 +1,7 @@
+            <!-- selecionar grupo -->
+            <select class="form-control" ng-model="cliente.grupo" ng-options="grupo.nome for grupo in grupos" ng-required="true" name="grupo">
+                <option value="">Selecione um Grupo</option>
+            </select>
+            <div class="msg-error" ng-show="clienteForm.grupo.$dirty && clienteForm.grupo.$invalid">
+                <small ng-show="clienteForm.grupo.$error.required">* Campo obrigatório</small>
+            </div>

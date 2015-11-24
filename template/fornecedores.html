@@ -1,0 +1,79 @@
+<h1 class="text-h1">Controle de Fornecedores</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Fornecedores cadastrados</div>
+    <div class="panel-body">
+        <p ng-if="fornecedors.length == 0" class="text-danger">Não há fornecedores cadastrados! :)</p>
+        
+        <input type="text" class="form-control input-busca" ng-model="criterioBusca" placeholder="Nome do fornecedor" />
+        
+        <table ng-if="fornecedors.length > 0" class="table table-striped table-condensed">
+            
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><a href="" ng-click="ordernarPor('nomefantasia')" class="title-col">Nome do Fornecedor</a></th>
+                    <th><a href="" ng-click="ordernarPor('cidade')" class="title-col">Cidade</a></th>
+                    <th><a href="" ng-click="ordernarPor('estado')" class="title-col">Estado</a></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-class="{selecionado: fornecedor.selecionado}" ng-repeat="fornecedor in fornecedores | filter:{nome: criterioBusca}  | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                    <td>
+                        <input type="checkbox" ng-model="fornecedor.selecionado" />
+                    </td>
+                    <td>{{ fornecedor.nomefantasia }}</td>
+                    <td>{{ fornecedor.cidade }}</td>
+                    <td>{{ fornecedor.estado }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+        
+        <button class="btn btn-danger pull-right" ng-if="isSelecionado(fornecedors)" ng-click="remover(fornecedores)">Remover Selecionado(s)</button>
+        
+    </div>
+    
+    <div class="panel-footer">
+        <h3 class="text-h1">Adicionar Fornecedor</h3>
+        <form name="fornecedorForm">
+            
+            <input type="text" class="form-control" placeholder="Nome do Fornecedor" ng-model="fornecedor.nome" ng-required="true" ng-minlength="3" ng-maxlength="100" name="nome" />
+            <div class="msg-error" ng-show="fornecedorForm.nome.$dirty && fornecedorForm.nome.$invalid">
+                <small ng-show="fornecedorForm.nome.$error.required">* Campo obrigatório</small>
+                <small ng-show="fornecedorForm.nome.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                <small ng-show="fornecedorForm.nome.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+            </div>
+            
+            <input type="text" class="form-control" placeholder="Endereço" ng-model="fornecedor.endereco" ng-required="false" ng-minlength="3" ng-maxlength="250" name="endereco" />
+            <div class="msg-error" ng-show="fornecedorForm.endereco.$dirty && fornecedorForm.endereco.$invalid">
+                <small ng-show="fornecedorForm.endereco.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                <small ng-show="fornecedorForm.endereco.$error.maxlength">* O campo deve ter menos de 250 caractesres</small>
+            </div>
+            
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Telefone" ng-model="fornecedor.telefone" ng-required="true" name="telefone"/>
+                    <div class="msg-error" ng-show="fornecedorForm.telefone.$dirty && fornecedorForm.telefone.$invalid">
+                        <small ng-show="fornecedorForm.telefone.$error.required">* Campo obrigatório</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Email" ng-model="fornecedor.email" ng-required="true" ng-minlength="3" ng-maxlength="250" name="email"/>
+                    <div class="msg-error" ng-show="fornecedorForm.email.$dirty && fornecedorForm.email.$invalid">
+                        <small ng-show="fornecedorForm.email.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                        <small ng-show="fornecedorForm.email.$error.maxlength">* O campo deve ter menos de 250 caractesres</small>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </form>
+        
+        <button class="btn btn-primary btn-block" ng-click="salvarFornecedor(fornecedor)" ng-disabled="fornecedorForm.$invalid">Adiconar Fornecedor</button>
+        
+    </div>
+</div>
+        
