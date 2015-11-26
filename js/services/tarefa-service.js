@@ -7,7 +7,7 @@
             return $http.get( url+'/tarefas');
         }
         function add(tarefa){
-            fornecedor.id = null;
+            tarefa.id = null;
             return $http.post( url+'/tarefas',tarefa);
         }
         
