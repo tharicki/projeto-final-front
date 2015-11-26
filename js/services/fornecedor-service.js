@@ -4,18 +4,18 @@
     
     function Service($http){
         function getAll(){
-            return $http.get( url+'/fornecedors');
+            return $http.get( url+'/fornecedores');
         }
         function add(fornecedor){
             fornecedor.id = null;
-            return $http.post( url+'/fornecedors',fornecedor);
+            return $http.post( url+'/fornecedores',fornecedor);
         }
         
         function edit(fornecedor){
-            return $http.post( url+'/fornecedors/'+fornecedor.id, fornecedor);
+            return $http.post( url+'/fornecedores/'+fornecedor.id, fornecedor);
         }
         function remove(fornecedor){
-            return $http.delete( url+'/fornecedors/'+fornecedor.id);
+            return $http.delete( url+'/fornecedores/'+fornecedor.id);
         }
         
         return ({
