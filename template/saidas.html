@@ -77,18 +77,18 @@
                 <div class="col-md-6">
                     <input type="text" class="form-control" placeholder="Valor" ng-model="saida.valor" ng-required="false" ng-maxlength="100" name="valor"/>
                     <div class="msg-error" ng-show="saidaForm.valor.$dirty && saidaForm.valor.$invalid">
-                        <small ng-show="saidaForm.marca.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+                        <small ng-show="saidaForm.valor.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
                     </div>
                 </div>
                 
             </div>
             
-            <input type="text" class="form-control" placeholder="Descrição" ng-model="saida.descricao" ng-required="true" ng-minlength="3" ng-maxlength="250" name="descricao" />
-            <div class="msg-error" ng-show="saidaForm.descricao.$dirty && saidaForm.descricao.$invalid">
-                <small ng-show="saidaForm.descricao.$error.required">* Campo obrigatório</small>
-                <small ng-show="saidaForm.descricao.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
-                <small ng-show="saidaForm.descricao.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
-            </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Valor" ng-model="saida.obs" ng-required="false" ng-maxlength="100" name="obs"/>
+                    <div class="msg-error" ng-show="saidaForm.obs.$dirty && saidaForm.obs.$invalid">
+                        <small ng-show="saidaForm.obs.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+                    </div>
+                </div>
             
         </form>
         

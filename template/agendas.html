@@ -66,10 +66,11 @@
             <div class="row">
                 
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Observacao" ng-model="agenda.observacao" ng-required="false" ng-minlength="3" ng-maxlength="100" name="observacao"/>
+                    
+                    <input type="text" class="form-control" placeholder="Observacao" ng-model="agenda.obs" ng-required="false" ng-minlength="3" ng-maxlength="100" name="observacao"/>
                     <div class="msg-error" ng-show="agendaForm.observacao.$dirty && agendaForm.observacao.$invalid">
-                        <small ng-show="agendaForm.observacao.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
-                        <small ng-show="agendaForm.observacao.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+                        <small ng-show="agendaForm.obs.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                        <small ng-show="agendaForm.obs.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
                     </div>
                 </div>
                 
