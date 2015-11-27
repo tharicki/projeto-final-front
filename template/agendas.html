@@ -1,0 +1,94 @@
+<h1 class="text-h1">Controle de Horários da Agenda</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Horários cadastrados</div>
+    <div class="panel-body">
+        <p ng-if="agendas.length == 0" class="text-danger">Não há horários cadastrados! :)</p>
+        
+        <input type="text" class="form-control input-busca" ng-model="criterioBusca" placeholder="Nome do agenda" />
+        
+        <table ng-if="agendas.length > 0" class="table table-striped table-condensed">
+            
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><a href="" ng-click="ordernarPor('horario')" class="title-col">Horário</a></th>
+                    <th><a href="" ng-click="ordernarPor('cliente')" class="title-col">Cliente</a></th>
+                    <th><a href="" ng-click="ordernarPor('tarefa')" class="title-col">Tarefa</a></th>
+                    <th>Observações</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-class="{selecionado: agenda.selecionado}" ng-repeat="agenda in agendas | filter:{descricao: criterioBusca}  | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                    <td>
+                        <input type="checkbox" ng-model="agenda.selecionado" />
+                    </td>
+                    <td>{{ agenda.horario }}</td>
+                    <td>{{ agenda.cliente.nome }}</td>
+                    <td>{{ agenda.tarefa.descricao }}</td>
+                    <td>{{ agenda.obs }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+        
+        <button class="btn btn-danger pull-right" ng-if="isSelecionado(agendas)" ng-click="remover(agendas)">Remover Selecionado(s)</button>
+        
+    </div>
+    
+    <div class="panel-footer">
+        <h3 class="text-h1">Adicionar Horário na Agenda</h3>
+        <form name="agendaForm">
+            
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Horario" ng-model="agenda.horario" ng-required="true" ng-maxlength="100" name="horario"/>
+                    <div class="msg-error" ng-show="agendaForm.horario.$dirty && agendaForm.horario.$invalid">
+                        <small ng-show="agendaForm.horario.$error.required">* Campo obrigatório</small>
+                        <small ng-show="agendaForm.horario.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                        <small ng-show="agendaForm.horario.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+                    </div>
+                </div>
+            
+                <div class="col-md-6">
+                    <select class="form-control edit-text" name="agenda" ng-model="agenda.cliente" ng-options="cliente.nome for cliente in clientes | orderBy:'cliente'" 
+                            ng-required="true" ng-controller="ClienteController">
+                        <option value="">Selecione o cliente</option>
+                    </select>
+                    <div class="msg-erro" ng-show="agendaForm.cliente.$dirty && agendaForm.cliente.$invalid">
+                        <small ng-show="agendaForm.cliente.$error.required">* Campo obrigatório</small>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Observacao" ng-model="agenda.observacao" ng-required="false" ng-minlength="3" ng-maxlength="100" name="observacao"/>
+                    <div class="msg-error" ng-show="agendaForm.observacao.$dirty && agendaForm.observacao.$invalid">
+                        <small ng-show="agendaForm.observacao.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                        <small ng-show="agendaForm.observacao.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <select class="form-control edit-text" name="agenda" ng-model="agenda.tarefa" ng-options="tarefa.descricao for tarefa in tarefas | orderBy:'tarefa'" 
+                            ng-required="true" ng-controller="TarefaController">
+                        <option value="">Selecione a tarefa</option>
+                    </select>
+                    <div class="msg-erro" ng-show="agendaForm.tarefa.$dirty && agendaForm.tarefa.$invalid">
+                        <small ng-show="agendaForm.tarefa.$error.required">* Campo obrigatório</small>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </form>
+        
+        <button class="btn btn-primary btn-block" ng-click="salvarAgenda(agenda)" ng-disabled="agendaForm.$invalid">Adiconar Agenda</button>
+        
+    </div>
+</div>
+        

@@ -1,0 +1,99 @@
+<h1 class="text-h1">Controle de Saidas</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Saidas cadastrados</div>
+    <div class="panel-body">
+        <p ng-if="saidas.length == 0" class="text-danger">Não há saidas cadastrados! :)</p>
+        
+        <input type="text" class="form-control input-busca" ng-model="criterioBusca" placeholder="Nome do saida" />
+        
+        <table ng-if="saidas.length > 0" class="table table-striped table-condensed">
+            
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><a href="" ng-click="ordernarPor('cliente')" class="title-col">Cliente</a></th>
+                    <th><a href="" ng-click="ordernarPor('produto')" class="title-col">Produto</a></th>
+                    <th><a href="" ng-click="ordernarPor('tarefa')" class="title-col">Tarefa</a></th>
+                    <th><a href="" ng-click="ordernarPor('valor')" class="title-col">Valor</a></th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-class="{selecionado: saida.selecionado}" ng-repeat="saida in saidas | filter:{descricao: criterioBusca}  | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                    <td>
+                        <input type="checkbox" ng-model="saida.selecionado" />
+                    </td>
+                    <td>{{ saida.cliente.nome }}</td>
+                    <td>{{ saida.produto.descricao }}</td>
+                    <td>{{ saida.tarefa.descricao }}</td>
+                    <td>{{ saida.valor }}</td>
+                    <td>{{ saida.obs }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+        
+        <button class="btn btn-danger pull-right" ng-if="isSelecionado(saidas)" ng-click="remover(saidas)">Remover Selecionado(s)</button>
+        
+    </div>
+    
+    <div class="panel-footer">
+        <h3 class="text-h1">Adicionar Saida</h3>
+        <form name="saidaForm">
+                        
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <select class="form-control edit-text" name="saida" ng-model="saida.cliente" ng-options="cliente.nome for cliente in clientes | orderBy:'cliente'" 
+                            ng-required="true" ng-controller="ClienteController">
+                        <option value="">Selecione o cliente</option>
+                    </select>
+                    <div class="msg-erro" ng-show="saidaForm.cliente.$dirty && saidaForm.cliente.$invalid">
+                        <small ng-show="saidaForm.cliente.$error.required">* Campo obrigatório</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <select class="form-control edit-text" name="saida" ng-model="saida.produto" ng-options="produto.descricao for produto in produtos | orderBy:'produto'" 
+                            ng-required="true" ng-controller="ProdutoController">
+                        <option value="">Selecione o produto</option>
+                    </select>
+                    <div class="msg-erro" ng-show="saidaForm.produto.$dirty && saidaForm.produto.$invalid">
+                        <small ng-show="saidaForm.produto.$error.required">* Campo obrigatório</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <select class="form-control edit-text" name="saida" ng-model="saida.tarefa" ng-options="tarefa.descricao for tarefa in tarefas | orderBy:'tarefa'" 
+                            ng-required="true" ng-controller="TarefaController">
+                        <option value="">Selecione a tarefa</option>
+                    </select>
+                    <div class="msg-erro" ng-show="saidaForm.tarefa.$dirty && saidaForm.tarefa.$invalid">
+                        <small ng-show="saidaForm.tarefa.$error.required">* Campo obrigatório</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Valor" ng-model="saida.valor" ng-required="false" ng-maxlength="100" name="valor"/>
+                    <div class="msg-error" ng-show="saidaForm.valor.$dirty && saidaForm.valor.$invalid">
+                        <small ng-show="saidaForm.marca.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <input type="text" class="form-control" placeholder="Descrição" ng-model="saida.descricao" ng-required="true" ng-minlength="3" ng-maxlength="250" name="descricao" />
+            <div class="msg-error" ng-show="saidaForm.descricao.$dirty && saidaForm.descricao.$invalid">
+                <small ng-show="saidaForm.descricao.$error.required">* Campo obrigatório</small>
+                <small ng-show="saidaForm.descricao.$error.minlength">* O campo deve ter mais de 3 caracteres</small>
+                <small ng-show="saidaForm.descricao.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
+            </div>
+            
+        </form>
+        
+        <button class="btn btn-primary btn-block" ng-click="salvarSaida(saida)" ng-disabled="saidaForm.$invalid">Adiconar Saida</button>
+        
+    </div>
+</div>
+        
