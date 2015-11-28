@@ -43,7 +43,7 @@
             }).catch(function(error){
                 $scope.msgError = error.data || 'Falha ao excluir cliente no servidor';
             });
-        };  
+        };
         
         $scope.loadDados();
         

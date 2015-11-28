@@ -32,7 +32,7 @@
             
         </table>
         
-        <button class="btn btn-danger pull-right" ng-if="isSelecionado(clientes)" ng-click="remover(clientes)">Remover Selecionado(s)</button>
+        <button class="btn btn-danger pull-right" ng-if="isSelecionado(clientes)" ng-click="remove(clientes)">Remover Selecionado(s)</button>
         
     </div>
     
@@ -75,6 +75,7 @@
         </form>
         
         <button class="btn btn-primary btn-block" ng-click="salvarCliente(cliente)" ng-disabled="clienteForm.$invalid">Adiconar Cliente</button>
+        <!-- aqui era pra ter alguma coisa pra apagar o texto dos input -->
         
     </div>
     

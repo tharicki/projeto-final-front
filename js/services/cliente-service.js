@@ -10,7 +10,6 @@
             cliente.id = null;
             return $http.post( url+'/clientes',cliente);
         }
-        
         function edit(cliente){
             return $http.post( url+'/clientes/'+cliente.id, cliente);
         }

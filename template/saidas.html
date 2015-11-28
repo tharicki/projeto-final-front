@@ -81,14 +81,14 @@
                     </div>
                 </div>
                 
-            </div>
-            
-                <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Valor" ng-model="saida.obs" ng-required="false" ng-maxlength="100" name="obs"/>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Observação" ng-model="saida.obs" ng-required="false" ng-maxlength="250" name="obs"/>
                     <div class="msg-error" ng-show="saidaForm.obs.$dirty && saidaForm.obs.$invalid">
                         <small ng-show="saidaForm.obs.$error.maxlength">* O campo deve ter menos de 30 caractesres</small>
                     </div>
                 </div>
+                
+            </div>
             
         </form>
         
